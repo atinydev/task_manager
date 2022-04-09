@@ -6,7 +6,8 @@ import 'package:task_manager/src/features/tasks/domain/task.dart';
 class TasksNotifier extends StateNotifier<List<Task>> {
   TasksNotifier()
       : super(
-          [],
+          [
+          ],
         );
 
   void create({
@@ -28,6 +29,18 @@ class TasksNotifier extends StateNotifier<List<Task>> {
         description: description,
         tags: tags,
       )
+    ];
+  }
+
+  void toggle({required Task target}) {
+    state = [
+      for (final task in state)
+        if (task.id == target.id)
+          task.copyWith(
+            isComplete: !task.isComplete,
+          )
+        else
+          task,
     ];
   }
 
