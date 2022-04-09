@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:task_manager/src/hardcode/hardcode.dart';
 
 import '../domain/task.dart';
 import 'tasks_controller.dart';
@@ -10,7 +11,7 @@ final tasksProvider =
 
 final currentTaskProvider =
     Provider.autoDispose.family<Task?, String?>((ref, target) {
-  if (target == null) {
+  if (target == HardCode.text.tempId) {
     return null;
   }
   return ref.watch(tasksProvider).firstWhere((task) => task.id == task.id);
