@@ -15,8 +15,7 @@ final router = GoRouter(
           path: ":id",
           name: TaskCreateEditScreen.name,
           builder: (context, state) {
-            final id = state.params['id']!;
-            return TaskCreateEditScreen(id: id);
+            return const TaskCreateEditScreen();
           },
         ),
       ],
