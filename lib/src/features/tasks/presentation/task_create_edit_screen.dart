@@ -3,7 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
 import 'task_view_controller.dart';
 import 'current_task_controller.dart';
 import 'date_controller.dart';
@@ -222,7 +221,7 @@ class _DateField extends ConsumerWidget {
                 style: TextStyle(
                   fontSize: 16,
                   color: (date == null)
-                      ? const Color(0x99ffffff)
+                      ? Theme.of(context).disabledColor
                       : Theme.of(context).colorScheme.onSurface,
                 ),
               ),
