@@ -46,7 +46,7 @@ class Task {
       date: map['due_date'] != null ? DateTime.parse(map['due_date']) : null,
       comments: map['comments'],
       description: map['description'],
-      tags: map['tags']?.toTags(),
+      tags: map['tags'] != null ? toTags(map['tags']) : null,
     );
     return task;
   }
