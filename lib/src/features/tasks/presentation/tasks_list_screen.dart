@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:task_manager/src/features/tasks/presentation/task_view_controller.dart';
 
 import 'date_controller.dart';
 import 'task_create_edit_screen.dart';
@@ -64,14 +65,14 @@ class TaskTile extends ConsumerWidget {
         ref.read(currentTaskProvider.notifier).updateState(task);
         ref.read(dateProvider.notifier).updateState(task.date);
         context.pushNamed(TaskCreateEditScreen.name, params: {
-          'id': task.id,
+          'id': task.id.toString(),
         });
       },
       child: Dismissible(
         onDismissed: (direction) {
           ref.read(tasksProvider.notifier).remove(target: task);
         },
-        key: Key(task.id),
+        key: Key(task.id.toString()),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(
@@ -80,7 +81,7 @@ class TaskTile extends ConsumerWidget {
               Checkbox(
                 value: task.isComplete,
                 onChanged: (value) {
-                  ref.read(tasksProvider.notifier).toggle(target: task);
+                  ref.read(taskViewController).toggle(target: task);
                 },
               ),
               Expanded(
