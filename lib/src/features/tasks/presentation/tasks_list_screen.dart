@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'date_controller.dart';
 import 'task_create_edit_screen.dart';
-import 'tasks_state.dart';
+import 'current_task_controller.dart';
 import '../domain/task.dart';
 import '../../../hardcode/hardcode.dart';
+import 'tasks_controller.dart';
 
 class TaskListScreen extends StatelessWidget {
   const TaskListScreen({Key? key}) : super(key: key);
@@ -34,6 +36,7 @@ class TaskList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final tasks = ref.watch(tasksProvider);
     return ListView.separated(
+      padding: const EdgeInsets.only(top: 4),
       itemCount: tasks.length,
       itemBuilder: (context, index) {
         final task = tasks[index];
@@ -58,6 +61,8 @@ class TaskTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
+        ref.read(currentTaskProvider.notifier).updateState(task);
+        ref.read(dateProvider.notifier).updateState(task.date);
         context.pushNamed(TaskCreateEditScreen.name, params: {
           'id': task.id,
         });
@@ -68,8 +73,9 @@ class TaskTile extends ConsumerWidget {
         },
         key: Key(task.id),
         child: Container(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Checkbox(
                 value: task.isComplete,
@@ -80,15 +86,40 @@ class TaskTile extends ConsumerWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(task.title),
-                    const SizedBox(height: 5),
-                    if (task.description != null)
+                    Text(
+                      task.title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                    if (task.description != null) ...[
+                      const SizedBox(height: 5),
                       Text(
                         task.description!,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
+                    ],
+                    if (task.date != null) ...[
+                      const SizedBox(height: 5),
+                      Text(
+                        task.date!.toDateVisual(),
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                    if (task.tags != null) ...[
+                      const SizedBox(height: 5),
+                      _TagsWidget(task: task),
+                    ],
                   ],
                 ),
               )
@@ -96,6 +127,40 @@ class TaskTile extends ConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _TagsWidget extends StatelessWidget {
+  const _TagsWidget({
+    Key? key,
+    required this.task,
+  }) : super(key: key);
+
+  final Task task;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      children: task.tags!.stringTags
+          .map(
+            (stringTag) => Container(
+              margin: const EdgeInsets.all(4),
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              child: Text(
+                "#$stringTag",
+                style: TextStyle(
+                  fontSize: 10,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 }
