@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:task_manager/src/features/tasks/data/tasks_repository.dart';
-import 'package:task_manager/src/features/tasks/presentation/task_view_controller.dart';
 
+
+import 'task_view_controller.dart';
 import 'current_task_controller.dart';
 import 'date_controller.dart';
-import 'tasks_controller.dart';
 import 'validation_controller.dart';
 
 class TaskCreateEditScreen extends HookConsumerWidget {

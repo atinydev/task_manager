@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:task_manager/src/features/tasks/presentation/task_view_controller.dart';
 
+import 'task_view_controller.dart';
 import 'date_controller.dart';
 import 'task_create_edit_screen.dart';
 import 'current_task_controller.dart';
