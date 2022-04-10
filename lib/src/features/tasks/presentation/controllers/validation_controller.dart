@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../domain/tags.dart';
+import '../../domain/tags.dart';
 
 class ValidatorController {
   static final formKey = GlobalKey<FormState>();

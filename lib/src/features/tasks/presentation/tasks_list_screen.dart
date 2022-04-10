@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'task_view_controller.dart';
-import 'date_controller.dart';
+import 'controllers/task_view_controller.dart';
+import 'controllers/date_controller.dart';
 import 'task_create_edit_screen.dart';
-import 'current_task_controller.dart';
+import 'controllers/current_task_controller.dart';
 import '../domain/task.dart';
 import '../../../hardcode/hardcode.dart';
-import 'tasks_controller.dart';
+import 'controllers/tasks_controller.dart';
 
 class TaskListScreen extends StatelessWidget {
   const TaskListScreen({Key? key}) : super(key: key);

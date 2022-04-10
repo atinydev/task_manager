@@ -1,6 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../domain/task.dart';
+import '../../domain/task.dart';
 
 class TasksNotifier extends StateNotifier<List<Task>> {
   TasksNotifier() : super([]);

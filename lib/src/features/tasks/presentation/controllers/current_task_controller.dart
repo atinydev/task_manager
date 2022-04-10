@@ -1,6 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../domain/task.dart';
+import '../../domain/task.dart';
 
 class CurrentTaskNotifier extends StateNotifier<Task?> {
   CurrentTaskNotifier() : super(null);

@@ -1,8 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../data/tasks_repository.dart';
-import '../domain/task.dart';
-import '../domain/tags.dart';
+import '../../data/tasks_repository.dart';
+import '../../domain/task.dart';
+import '../../domain/tags.dart';
 import 'tasks_controller.dart';
 
 class TaskViewController {

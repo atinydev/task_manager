@@ -51,8 +51,6 @@ class TasksRepository {
   Future<Task> insertTask(Task target) async {
     final queryParameters = target.toMap();
     queryParameters['token'] = token;
-    print(queryParameters);
-    print(url.toString());
 
     final response = await Dio(baseOptions).post(
       path,
