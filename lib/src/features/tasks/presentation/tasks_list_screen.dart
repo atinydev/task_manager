@@ -70,7 +70,7 @@ class TaskTile extends ConsumerWidget {
       },
       child: Dismissible(
         onDismissed: (direction) {
-          ref.read(tasksProvider.notifier).remove(target: task);
+          ref.read(taskViewController).remove(target: task);
         },
         key: Key(task.id.toString()),
         child: Container(
@@ -156,7 +156,7 @@ class _TagsWidget extends StatelessWidget {
                 "#$stringTag",
                 style: TextStyle(
                   fontSize: 10,
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
             ),
