@@ -13,3 +13,7 @@ extension ToTags on String {
     return Tags(split(',').map((e) => e.trim()).toList());
   }
 }
+
+Tags toTags(String value) {
+  return Tags(value.split(',').map((e) => e.trim()).toList());
+}
