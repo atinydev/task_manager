@@ -4,9 +4,12 @@ class AppTheme {
   static const Color accentColor = Colors.deepPurple;
   static const Color lightColor = Colors.white;
   static const Color darkColor = Colors.black;
+  static const Color disableLightColor = Color(0x99000000);
+  static const Color disableDarkColor = Color(0x99ffffff);
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     primaryColor: lightColor,
+    disabledColor: disableLightColor,
     scaffoldBackgroundColor: lightColor,
 
     colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -28,11 +31,14 @@ class AppTheme {
         fontSize: 20,
       ),
       iconTheme: IconThemeData(
-        color: darkColor,
+        color: accentColor,
       ),
       actionsIconTheme: IconThemeData(
-        color: darkColor,
+        color: accentColor,
       ),
+    ),
+    iconTheme: const IconThemeData(
+      color: accentColor,
     ),
     checkboxTheme: CheckboxThemeData(
       visualDensity: VisualDensity.compact,
@@ -54,6 +60,7 @@ class AppTheme {
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
     primaryColor: darkColor,
+    disabledColor: disableDarkColor,
     scaffoldBackgroundColor: darkColor,
     backgroundColor: darkColor,
     colorScheme: ColorScheme.fromSwatch().copyWith(
