@@ -17,3 +17,7 @@ You can create, edit, and delete tasks.
 flutter pub get
 flutter run
 ```
+
+## Video
+https://user-images.githubusercontent.com/93559957/162647072-c3912a9f-5c8f-4147-9d6d-040075ee5842.mp4
+
