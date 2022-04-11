@@ -2,7 +2,7 @@
 
 A simple application to manage tasks with Api connection.
 
-You can create, edit, toggle and delete tasks.
+You can create, edit, and delete tasks.
 
 ### Task:
  - title -> Text
