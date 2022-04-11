@@ -86,6 +86,7 @@ class TaskCreateEditScreen extends HookConsumerWidget {
             IconButton(
               onPressed: () {
                 if (task != null) {
+                  clearControllersData();
                   context.pop();
                   ref.read(taskViewController).remove(target: task);
                 }
