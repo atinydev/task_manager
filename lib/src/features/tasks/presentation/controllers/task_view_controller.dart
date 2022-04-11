@@ -24,7 +24,7 @@ class TaskViewController {
     String? comments,
     String? description,
     String? tags,
-  }) {
+  }) async {
     if (comments != null && comments.isEmpty) comments = null;
     if (description != null && description.isEmpty) description = null;
     if (tags != null && tags.isEmpty) tags = null;
@@ -36,8 +36,8 @@ class TaskViewController {
       description: description,
       tags: tags?.toTags(),
     );
-    ref.read(tasksProvider.notifier).create(task: task);
-    ref.read(tasksRepository).insertTask(task);
+    final newTask = await ref.read(tasksRepository).insertTask(task);
+    ref.read(tasksProvider.notifier).create(task: newTask);
   }
 
   void update({
@@ -61,8 +61,8 @@ class TaskViewController {
       description: description,
       tags: tags?.toTags(),
     );
-    final newTask = await ref.read(tasksRepository).updateTask(task);
-    ref.read(tasksProvider.notifier).update(newTask: newTask, id: id);
+    ref.read(tasksRepository).updateTask(task);
+    ref.read(tasksProvider.notifier).update(newTask: task, id: id);
   }
 
   void toggle({
